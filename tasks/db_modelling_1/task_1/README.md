@@ -4,8 +4,8 @@ DB スキーマの設計（ER 図のようなものは`./diagram.dio`に）
 
 ## テーブル
 
-- お好みすし（単品）： Sushi
 - セットメニュー（詰め合わせ）： Combo Sushi
+- お好みすし（単品）： Sushi
 - 注文者： Orderer
 
 ## カラム

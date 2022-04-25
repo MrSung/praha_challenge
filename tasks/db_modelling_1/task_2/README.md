@@ -6,7 +6,7 @@
 
 Combo Sushi テーブル、Sushi テーブルに、シャリの大小の属性を追加する。
 
-選択肢が 2 つであることと、Boolean よりコンテキストに合うことから、Enum が適切だと考える。
+選択肢が 2 つであることと、Boolean よりコンテキストに合う（今後シャリのサイズのバリエーションが増える場合などにも対応できる）ことから、Enum が適切だと考える。
 
 ```prisma
 enum ShariSize {
@@ -21,7 +21,7 @@ Combo Sushi テーブルに、Sushi テーブル内のネタ ID からなる配�
 
 ```prisma
 model Sushi {
-  id String
+  id String @id @default(uuid())
 }
 
 model ComboSushi {

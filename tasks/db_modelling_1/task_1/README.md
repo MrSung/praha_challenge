@@ -1,14 +1,15 @@
 # 課題１
 
-DB スキーマの設計（ER 図のようなものは`./diagram.dio`に）
+DB スキーマの設計を、下記のテーブルとカラムにまとめた。
+（ER 図のようなものは`../diagram.dio`に）
 
-## テーブル
+## DB スキーマ：テーブル
 
 - セットメニュー（詰め合わせ）： Combo Sushi
 - お好みすし（単品）： Sushi
 - 注文者： Orderer
 
-## カラム
+## DB スキーマ：カラム
 
 - Combo Sushi テーブル
 
@@ -34,6 +35,15 @@ DB スキーマの設計（ER 図のようなものは`./diagram.dio`に）
 | お名前 (String) Name | お電話（String) Phone Number | お支払い (Boolean) Payment |
 | -------------------- | ---------------------------- | -------------------------- |
 | John Doe             | 1234-5618                    | true                       |
+
+## ER 図の表記について
+
+- 長方形：Entities
+- 楕円：Simple Attributes
+  - ボーダー付き：Multivalued Attributes
+- ひし形：Relationships
+- 細線：Partial participation
+- 太線：Total participation
 
 ---
 

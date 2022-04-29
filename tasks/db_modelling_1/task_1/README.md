@@ -40,10 +40,11 @@ DB スキーマの設計を、下記のテーブルとカラムにまとめた�
 
 - 長方形：Entities
 - 楕円：Simple Attributes
-  - ボーダー付き：Multivalued Attributes
+  - 太めのボーダー付き：Multivalued Attributes
 - ひし形：Relationships
 - 細線：Partial participation
 - 太線：Total participation
+- 1, N：カーディナリティ
 
 ---
 

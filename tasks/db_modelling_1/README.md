@@ -111,6 +111,10 @@ model ComboSushi {
   - 後方互換性考慮した場合、Paid を残して、PaymentMethod の Enum にして、None, CreditCard, EMoney と選べるようにする
   - 後方互換性考慮しなくてもよい場合、Paid を PaymentMethod に置き換える
 
+### ER 図的なもの３
+
+![ER 図的なもの３](./diagram_3.svg "ER 図的なもの３")
+
 ---
 
 ## Note

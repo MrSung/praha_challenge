@@ -105,7 +105,11 @@ model ComboSushi {
 考えうる追加仕様
 
 - 表示価格を、税込・税抜のどちらかを一斉選択できるように
+  - 後方互換性考慮した場合、After-tax Price を attribute に追加する
+  - 後方互換性考慮しなくてもよい場合、Price を Simple attribute から Composite attribute にする
 - お支払い方法の追加で、クレカや電子マネー決済が選択できるように
+  - 後方互換性考慮した場合、Paid を残して、PaymentMethod の Enum にして、None, CreditCard, EMoney と選べるようにする
+  - 後方互換性考慮しなくてもよい場合、Paid を PaymentMethod に置き換える
 
 ---
 

@@ -1,7 +1,6 @@
 # 課題２
 
 仕様変更への対応を行い、ER 図に反映した。
-（ER 図のようなものは`../diagram.dio`に）
 
 ## シャリの大小も選べるようにする
 
@@ -29,3 +28,7 @@ model ComboSushi {
   items: Sushi[]
 }
 ```
+
+## ER 図的なもの
+
+![ER 図的なもの](../diagram.svg "ER 図的なもの")

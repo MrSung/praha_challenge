@@ -151,18 +151,92 @@ Combo Sushi テーブルに、Sushi テーブル内のネタ ID からなる配�
 モデル
 
 ```prisma
-model Sushi {
-  id String @id @default(uuid())
+enum Category {
+  Morikomi
+  Nigiri
+  Don
+  Jimoto
+}
+
+enum ShariSize {
+  Large
+  Small
 }
 
 model ComboSushi {
-  items: Sushi[]
+  id            String    @id @default(uuid())
+  sushiId       String[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  name          String
+  category      Category
+  price         Int
+  count         Int
+  withoutWasabi Boolean
+  shariSize     ShariSize
+}
+
+model Sushi {
+  id            String       @id @default(uuid())
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  name          String
+  category      Category
+  price         Int
+  count         Int
+  withoutWasabi Boolean
+}
+
+model Orderer {
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String
+  phoneNumber Int      @unique
+  paid        Boolean
 }
 ```
 
 ER 図的なもの
 
 ![ER 図的なもの２](./diagram_2.svg "ER 図的なもの２")
+
+ただ、Multivalued attributes が使えない場合には、そもそもの ComboSushi エンティティはなくして、Sushi エンティティに、カテゴリを加えることで、集計を可能にできそうだが、大掛かりな DB のマイグレが必要になると思われる。
+
+モデル
+
+```prisma
+enum Category {
+  None
+  Morikomi
+  Nigiri
+  Don
+  Jimoto
+}
+
+enum ShariSize {
+  Large
+  Small
+}
+
+model Sushi {
+  id            String   @id @default(uuid())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  name          String
+  category      Category
+  price         Int
+  count         Int
+  withoutWasabi Boolean
+}
+
+model Orderer {
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String
+  phoneNumber Int      @unique
+  paid        Boolean
+}
+```
 
 ---
 

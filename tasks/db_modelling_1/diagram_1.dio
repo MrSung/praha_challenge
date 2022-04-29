@@ -41,7 +41,7 @@
                 <mxCell id="11" value="" style="edgeStyle=none;html=1;endArrow=none;endFill=0;" parent="1" source="10" target="6" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="10" value="Payment" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;" parent="1" vertex="1">
+                <mxCell id="10" value="Paid" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;" parent="1" vertex="1">
                     <mxGeometry x="40" y="160" width="120" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="21" value="" style="edgeStyle=none;jumpStyle=line;jumpSize=16;html=1;endArrow=none;endFill=0;strokeWidth=4;" parent="1" source="15" target="20" edge="1">

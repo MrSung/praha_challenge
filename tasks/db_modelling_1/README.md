@@ -2,90 +2,16 @@
 
 ## 課題１
 
-DB スキーマの設計を、下記のテーブルとカラムにまとめた。
+一つの注文を、各ネタに紐付いた注文明細によって成り立たせる。
 
-### DB スキーマ
-
-エンティティ
-
-- セットメニュー（詰め合わせ）： ComboSushi
-- お好みすし（単品）： Sushi
-- 注文者： Orderer
-
-アトリビュート
-
-- 種類：category
-- ネタの名前：name
-- 値段：price
-- 個数・皿数：count
-- ぬき：Without wasabi
-
-モデル
-
-各エンティティの DB スキーマのモデルを prisma 形式で載せた。
-
-```prisma
-enum Category {
-  Morikomi
-  Nigiri
-  Don
-  Jimoto
-}
-
-model ComboSushi {
-  id            String   @id @default(uuid())
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  name          String
-  category      Category
-  price         Int
-  count         Int
-  withoutWasabi Boolean
-}
-
-model Sushi {
-  id            String   @id @default(uuid())
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  name          String
-  price         Int
-  count         Int
-  withoutWasabi Boolean
-}
-
-model Orderer {
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  name        String
-  phoneNumber Int      @unique
-  paid        Boolean
-}
-```
-
-ER 図的なもの
-
-![ER 図的なもの１](./diagram_1.svg "ER 図的なもの１")
-
-ER 図の表記について
-
-- 長方形：Entities
-- 楕円：Simple Attributes
-  - 太めのボーダー付き：Multivalued Attributes
-- ひし形：Relationships
-- 細線：Partial participation
-- 太線：Total participation
-- 1, N：カーディナリティ
-
-→ ちゃんとした ER 図を改めて作った
-
-[![課題１のER図](https://mermaid.ink/img/pako:eNp9k99q1EAUh19lmOvsC-ROmq3Eupsl3d4FltnMtAkkM3EyoZbdgmmhVqEqyIpgbyqCWqFUWlGw4MOEpPaqr-DsJpONu9Wr_PvmzPc7OTOCLsME6pBww0dbHIUOdejKxnrf6rRtMB63WmwELNuQDzqIAuSSuPF95FAAXA9x5ArCgZvEgoWED3wMemvAgTcnH_Oz96bhwCkoyGMxZygKSY3kr45KxqeCbDVLRR6jZECTcCjfKvzm3c_fn79eT07zl9-n63YdWjpOhceVcMto9--ZD6W3y6hAPo0VtaDNOG44FxefijdPlfPd4VaXww0ZCwiic6ysGnEmWxYTXFcufhxm6a-mtRKdyY9Bz7aMjZW-9PZQvIDcaY6JTBcsBCjevri-PF-OUYdd_V9YqY0TV9RcPjnIX6eKUz9JUY8SRIUvdmqwmJz_3ZVtX3gsEYNtFKOhL7ksnWTpRfH8OEuPql6o3KN_qvSWVWYzpZBqpEpiaaQUFXHfbWBPPhRn30qSyDGrMRfJZYzPQ2V7X7L9g2zvMts_vb067FrdtgY6lm2uWR1TA13zvmnLq2F1NfDA7Fh96_bqWZUNalDORIh8LM_aLKADhUdC4kBd3mKyiZJAzGCJJhGWm7exLxiH-iYKYqJBlAi2vkNdqAueEAVVp7aidv8AxE-B0g)](https://mermaid.live/edit#pako:eNp9k99q1EAUh19lmOvsC-ROmq3Eupsl3d4FltnMtAkkM3EyoZbdgmmhVqEqyIpgbyqCWqFUWlGw4MOEpPaqr-DsJpONu9Wr_PvmzPc7OTOCLsME6pBww0dbHIUOdejKxnrf6rRtMB63WmwELNuQDzqIAuSSuPF95FAAXA9x5ArCgZvEgoWED3wMemvAgTcnH_Oz96bhwCkoyGMxZygKSY3kr45KxqeCbDVLRR6jZECTcCjfKvzm3c_fn79eT07zl9-n63YdWjpOhceVcMto9--ZD6W3y6hAPo0VtaDNOG44FxefijdPlfPd4VaXww0ZCwiic6ysGnEmWxYTXFcufhxm6a-mtRKdyY9Bz7aMjZW-9PZQvIDcaY6JTBcsBCjevri-PF-OUYdd_V9YqY0TV9RcPjnIX6eKUz9JUY8SRIUvdmqwmJz_3ZVtX3gsEYNtFKOhL7ksnWTpRfH8OEuPql6o3KN_qvSWVWYzpZBqpEpiaaQUFXHfbWBPPhRn30qSyDGrMRfJZYzPQ2V7X7L9g2zvMts_vb067FrdtgY6lm2uWR1TA13zvmnLq2F1NfDA7Fh96_bqWZUNalDORIh8LM_aLKADhUdC4kBd3mKyiZJAzGCJJhGWm7exLxiH-iYKYqJBlAi2vkNdqAueEAVVp7aidv8AxE-B0g)
+[![課題１のER図](https://mermaid.ink/img/pako:eNp9k09v0zAchr-K5XP6BXJDpIMw2kxtd4tUuY63WGrs4NgaUzuJthIMpAou5QIXEBIwpAk0EEhM2oexGthpXwG3TtqwMk7548evHv9eeQAxjwh0IREeRfsCJSEL2e3ddido1FtgOKzV-AAELc98uCDtI0yyyvogZADgGAmEJREAq0zyhIgujcDONgjh5Zv389O3vhfCBSjJQ7lmGErICpm_mFqGMkn2q1FpzBnpMpX0zN8Sv3z18_fHL79mJ_Pn3xf7jkJmHRfCw0K45tU7t_z7xhtzJhFlWUld0-YiqjjnZx_yl09K538fbmvzcD3O-wSxNWZTU8HNyDISrZLzH8d6dFG1LkWX8kPQ3m3f9Y11jLJrwE3eW__zzlQW0xWlJ1M9viipctqWeaAQk1QerrB89rnwtE6DG5J3NpOXXVugKNqubxRtmVRQXIEevctPv1mOmOoLCCOzhYu1nx5_0pPHevxVT06uzo-bQbPugEbQ8reDhu-Apn_Hb5mnFzQdcM9vBJ3g6vzp33UdUBlzJbsHKEM9ukgezfToLH_2Wo-mxeGhA02hCaKRuSjLGYRQxiQhIXTNa0T2kOrLJWxQlUbGsx5RyQV091A_Iw5ESvL2IcPQlUKREiquXEEd_QGioGZu)](https://mermaid.live/edit#pako:eNp9k09v0zAchr-K5XP6BXJDpIMw2kxtd4tUuY63WGrs4NgaUzuJthIMpAou5QIXEBIwpAk0EEhM2oexGthpXwG3TtqwMk7548evHv9eeQAxjwh0IREeRfsCJSEL2e3ddido1FtgOKzV-AAELc98uCDtI0yyyvogZADgGAmEJREAq0zyhIgujcDONgjh5Zv389O3vhfCBSjJQ7lmGErICpm_mFqGMkn2q1FpzBnpMpX0zN8Sv3z18_fHL79mJ_Pn3xf7jkJmHRfCw0K45tU7t_z7xhtzJhFlWUld0-YiqjjnZx_yl09K538fbmvzcD3O-wSxNWZTU8HNyDISrZLzH8d6dFG1LkWX8kPQ3m3f9Y11jLJrwE3eW__zzlQW0xWlJ1M9viipctqWeaAQk1QerrB89rnwtE6DG5J3NpOXXVugKNqubxRtmVRQXIEevctPv1mOmOoLCCOzhYu1nx5_0pPHevxVT06uzo-bQbPugEbQ8reDhu-Apn_Hb5mnFzQdcM9vBJ3g6vzp33UdUBlzJbsHKEM9ukgezfToLH_2Wo-mxeGhA02hCaKRuSjLGYRQxiQhIXTNa0T2kOrLJWxQlUbGsx5RyQV091A_Iw5ESvL2IcPQlUKREiquXEEd_QGioGZu)
 
 ### 任意課題
 
 #### 論理設計
 
-必要なデータを全部洗い出して、一事実が一箇所になるように（正規化）、表と表の関係性（リレーション）を組んでいく。
-つまり、正規化されたテーブルを設計していき、最後に人が見てもわかるような ER 図に落とし込んでいく。
+必要なデータを全部洗い出して、一事実が一箇所になるように（正規化）、表と表の関係性（リレーション）を組む。
+つまり、正規化されたテーブルを設計していき、最後に人が見てもわかるような ER 図に落とし込む。
 
 1. データの洗い出し
 2. リレーションの作成
@@ -94,11 +20,11 @@ ER 図の表記について
 
 #### 物理設計
 
-論理設計で出来上がった ER 図を基に、DBMS (Oracle, SQL Server など) で実装していく。
+論理設計で出来上がった ER 図を基に、DBMS (Oracle, SQL Server など) で実装する。
 
 - データ容量の調整
 - トランザクション・ログ
-- 障害があった時の保証、
+- 障害があった時の保証
 - インデックスによる検索性の調整
 - パフォーマンスの調整
 
@@ -108,153 +34,15 @@ ER 図の表記について
 
 ## 課題２
 
-仕様変更への対応を行い、ER 図に反映した。
+セットメニュー単位での注文管理が、より容易にできるように表現する。
+カラムの重複が大きいが、単品と詰合せで分ける。
 
-### シャリの大小も選べるようにする
+- シャリの大小も選べるようにする
+  - shari_size の enum を追加
+- 寿司ネタが毎月何個売れているのかを知れるようにする
+  - セットメニューがどんなネタで構成されているのか用意することで対応
 
-Combo Sushi テーブル、Sushi テーブルに、シャリの大小の属性を追加する。
-
-選択肢が 2 つであることと、Boolean よりコンテキストに合う（今後シャリのサイズのバリエーションが増える場合などにも対応できる）ことから、Enum が適切だと考える。
-
-モデル
-
-```prisma
-enum Category {
-  Morikomi
-  Nigiri
-  Don
-  Jimoto
-}
-
-enum ShariSize {
-  Large
-  Small
-}
-
-model ComboSushi {
-  id            String    @id @default(uuid())
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  name          String
-  category      Category
-  price         Int
-  count         Int
-  withoutWasabi Boolean
-  shariSize     ShariSize
-}
-
-model Sushi {
-  id            String   @id @default(uuid())
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  name          String
-  price         Int
-  count         Int
-  withoutWasabi Boolean
-}
-
-model Orderer {
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  name        String
-  phoneNumber Int      @unique
-  paid        Boolean
-}
-```
-
-### 寿司ネタが毎月何個売れているのかを知れるようにする
-
-Combo Sushi テーブルに、Sushi テーブル内のネタ ID からなる配列の属性として加えることで、Combo Sushi の販売個数の内訳の、各ネタの販売数量も知ることができるので、全体での集計も可能となると考える。この場合の加える属性は、他が Simple attributes なことに対して、 Multivalued attributes に分類できる。
-
-モデル
-
-```prisma
-enum Category {
-  Morikomi
-  Nigiri
-  Don
-  Jimoto
-}
-
-enum ShariSize {
-  Large
-  Small
-}
-
-model ComboSushi {
-  id            String    @id @default(uuid())
-  sushiId       String[]
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  name          String
-  category      Category
-  price         Int
-  count         Int
-  withoutWasabi Boolean
-  shariSize     ShariSize
-}
-
-model Sushi {
-  id            String       @id @default(uuid())
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
-  name          String
-  category      Category
-  price         Int
-  count         Int
-  withoutWasabi Boolean
-}
-
-model Orderer {
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  name        String
-  phoneNumber Int      @unique
-  paid        Boolean
-}
-```
-
-ER 図的なもの
-
-![ER 図的なもの２](./diagram_2.svg "ER 図的なもの２")
-
-ただ、Multivalued attributes が使えない場合には、そもそもの ComboSushi エンティティはなくして、Sushi エンティティに、カテゴリを加えることで、集計を可能にできそうだが、大掛かりな DB のマイグレが必要になると思われる。
-
-モデル
-
-```prisma
-enum Category {
-  None
-  Morikomi
-  Nigiri
-  Don
-  Jimoto
-}
-
-enum ShariSize {
-  Large
-  Small
-}
-
-model Sushi {
-  id            String   @id @default(uuid())
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  name          String
-  category      Category
-  price         Int
-  count         Int
-  withoutWasabi Boolean
-}
-
-model Orderer {
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  name        String
-  phoneNumber Int      @unique
-  paid        Boolean
-}
-```
+[![課題２のER図](https://mermaid.ink/img/pako:eNq9ld1KG0EUx19l2WvzArmzmtjQJBtMvFsIk93RDGRn0t1ZrE2EbkJpWhCFklKwF_0QrF6EFCkWFHyYYaNe-Qqd7OzG_VR707tk9jdz_v9zzpzpyRrRoZyXobmKwJYJDBWreGWj3lAqhXWp38_lSE9S1lf5n7zU7QANWqHvPRVLktYGJtAoNCXNtigxoNlEulR7Iany7bdjd_K9tKrKc5DCV_SewcCAC8Q92BMMwhRuhY_qtgmGTWwbLb4a4LeHFzcnv67Hp-7--XzfroqFxrngvi84Vy9V18qFXKlRqHDxGsEUIGyloitK5ZmSRcZcElMPWZyd_Zx9ehdYTM9FMZmLFiEdCPA9Jk7tmoRn2IL64uTZnxFzrsImI748F_2k4ZxSa5SUKnfTBoGRsMvIvvv11G0p8eob9eelxw73VrKPSk2rhfBWBzYRhcYixe7eZ_ejI9Jx-_Xt9eEkme5FUYrxHUnWsq02irFsuMcGVwEbdKEgX9oAU0R3YvBsPI2UJZSAVGsaMVok6owNLthwyIajfzEX25TSeiJQHE-3KOCQxRgfd5nSY08pZPHhQgbXYRvRNrFpcxtYoIXmapwxc85mH74wx58QkM8CyeLREI_xGnqKz9nwBxueMmfiHh270_27y1F5eX2tsCTVK8vl8t3l-4xKPWghWrDiowX7XybE5etlNHUtq6m98Sswf_aGqcQEFmTXRFoCfXM0m_z2xYhL7g9TkdgVpdooVBuRSSqwXkajeppvTqZs4LgHIzbYZ85h9NXwSF92DEy-HR4cKI_TCfELvb2HrlGGuqdPFR5OXpL5qDcA0vmL60VTZdqGBlTlPP-pw01gd6gHc9Tu6oDCgo4oMeX8JuhYcEkGNiX1HazJeWraMID8t9undv8C3TUvjA)](https://mermaid.live/edit#pako:eNq9ld1KG0EUx19l2WvzArmzmtjQJBtMvFsIk93RDGRn0t1ZrE2EbkJpWhCFklKwF_0QrF6EFCkWFHyYYaNe-Qqd7OzG_VR707tk9jdz_v9zzpzpyRrRoZyXobmKwJYJDBWreGWj3lAqhXWp38_lSE9S1lf5n7zU7QANWqHvPRVLktYGJtAoNCXNtigxoNlEulR7Iany7bdjd_K9tKrKc5DCV_SewcCAC8Q92BMMwhRuhY_qtgmGTWwbLb4a4LeHFzcnv67Hp-7--XzfroqFxrngvi84Vy9V18qFXKlRqHDxGsEUIGyloitK5ZmSRcZcElMPWZyd_Zx9ehdYTM9FMZmLFiEdCPA9Jk7tmoRn2IL64uTZnxFzrsImI748F_2k4ZxSa5SUKnfTBoGRsMvIvvv11G0p8eob9eelxw73VrKPSk2rhfBWBzYRhcYixe7eZ_ejI9Jx-_Xt9eEkme5FUYrxHUnWsq02irFsuMcGVwEbdKEgX9oAU0R3YvBsPI2UJZSAVGsaMVok6owNLthwyIajfzEX25TSeiJQHE-3KOCQxRgfd5nSY08pZPHhQgbXYRvRNrFpcxtYoIXmapwxc85mH74wx58QkM8CyeLREI_xGnqKz9nwBxueMmfiHh270_27y1F5eX2tsCTVK8vl8t3l-4xKPWghWrDiowX7XybE5etlNHUtq6m98Sswf_aGqcQEFmTXRFoCfXM0m_z2xYhL7g9TkdgVpdooVBuRSSqwXkajeppvTqZs4LgHIzbYZ85h9NXwSF92DEy-HR4cKI_TCfELvb2HrlGGuqdPFR5OXpL5qDcA0vmL60VTZdqGBlTlPP-pw01gd6gHc9Tu6oDCgo4oMeX8JuhYcEkGNiX1HazJeWraMID8t9undv8C3TUvjA)
 
 ---
 
@@ -263,30 +51,4 @@ model Orderer {
 ### 考えうる追加仕様
 
 - 表示価格を、税込・税抜のどちらかを一斉選択できるように
-  - 後方互換性考慮した場合、After-tax Price を attribute に追加する
-  - 後方互換性考慮しなくてもよい場合、Price を Simple attribute から Composite attribute にする
 - お支払い方法の追加で、クレカや電子マネー決済が選択できるように
-  - 後方互換性考慮した場合、Paid を残して、PaymentMethod の Enum にして、None, CreditCard, EMoney と選べるようにする
-  - 後方互換性考慮しなくてもよい場合、Paid を PaymentMethod に置き換える
-
-ER 図的なもの
-
-![ER 図的なもの３](./diagram_3.svg "ER 図的なもの３")
-
----
-
-## Note
-
-### Database schema
-
-A schema is the blueprint of a database.
-
-- Names of tables
-- Columns of each table
-- Datatype
-- Functions
-- Other objects
-
-are included in the schema.
-
-We use the schema diagram to display the schema of a database.

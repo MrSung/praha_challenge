@@ -24,4 +24,6 @@
 
 ## おまけ
 
-実際に、上記 ER 図に従ったドキュメント管理システムの [working example](https://github.com/MrSung/doc-management) を、別途作っている途中
+上記 ER 図に従った[ドキュメント管理システムの working example](https://github.com/MrSung/doc-management)を作っている途中
+
+（厳密には従っていないが、おおよそ沿った形）

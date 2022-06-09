@@ -10,7 +10,7 @@
 > **Note:**
 >
 > - 作成者は新規作成・削除ができるものとした
-> - `directory_path`は、text 形式のスカラ値で用意するのが、一番取り扱いやすいと考えた
+> - `directory_path`は、text 形式で用意するのが取り扱いやすいと考えた
 >   - `path/to/certain/subdirectory`みたいなスラッシュ区切りの text 形式
 > - ドキュメントは論理削除して、別テーブルで削除済みドキュメントを管理する
 >   - CREATED-DOCUMENT からレコード削除 → DELETED-DOCUMENT にレコード追加
@@ -24,6 +24,4 @@
 
 ## おまけ
 
-上記 ER 図に従った[ドキュメント管理システムの working example](https://github.com/MrSung/doc-management)を作っている途中
-
-（厳密には従っていないが、おおよそ沿った形）
+上記 ER 図にかなり大雑把に従った[ドキュメント管理システムの working example](https://github.com/MrSung/doc-management)を作っているが、ER 図通りに作るのは結構難しいことがわかった。。

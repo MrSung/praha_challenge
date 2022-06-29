@@ -14,3 +14,39 @@
 バッチ実行時のテーブルの更新
 
 [![バッチ実行時のテーブルの更新](https://mermaid.ink/img/pako:eNqNUktLw0AQ_ithTwot3ot4qlcvehECJTarDTZJSdKDtIXurkqqEUXQIj4LPuqDKuhBbbU_ZrJpPfkX3DRFxFr1trN88z1mpoDSpopRAi1YSi4jzSRlQ5LSFlYcnLKwrhkqtkZkBOwK2BHQU2D3wMrAWv7LQeBuyWj0hwYpHp-QNDvlKPZiSjUNXAgZtoAxYIQ3jrs1L9ijQK7H56yxCaBtoE9Ab3nD859Xge0AuwR6B8RzrDyWUSmU-ErX4y_OYrtoO2bud5_BTY3vH72Vid-uBdWzUJduB_sPwa4QqAK5ArIMpAHkAsok8jPAIZwAOQTq-c0z_3FNkAGtiDLq7jW9t9x_aQumMulsvvKDuii52wTqAl3jlQ0xjpCPrr-3Kv2xDmaeMov5nPrnckTESLUX8Zi_esPD_TigIdgI9XbS5M_nAsVXmHDdrbudRrWndB4Ntm__m9OBq5ANFEM6tnRFU8UFFsIeGTkZrIulJ8RTxfNKPuvISDZKAhrxTaqaY1ooMa9kbRxDSt4xp5eM9OdHhEpqirhovf9b-gDx84cL)](https://mermaid.live/edit#pako:eNqNUktLw0AQ_ithTwot3ot4qlcvehECJTarDTZJSdKDtIXurkqqEUXQIj4LPuqDKuhBbbU_ZrJpPfkX3DRFxFr1trN88z1mpoDSpopRAi1YSi4jzSRlQ5LSFlYcnLKwrhkqtkZkBOwK2BHQU2D3wMrAWv7LQeBuyWj0hwYpHp-QNDvlKPZiSjUNXAgZtoAxYIQ3jrs1L9ijQK7H56yxCaBtoE9Ab3nD859Xge0AuwR6B8RzrDyWUSmU-ErX4y_OYrtoO2bud5_BTY3vH72Vid-uBdWzUJduB_sPwa4QqAK5ArIMpAHkAsok8jPAIZwAOQTq-c0z_3FNkAGtiDLq7jW9t9x_aQumMulsvvKDuii52wTqAl3jlQ0xjpCPrr-3Kv2xDmaeMov5nPrnckTESLUX8Zi_esPD_TigIdgI9XbS5M_nAsVXmHDdrbudRrWndB4Ntm__m9OBq5ANFEM6tnRFU8UFFsIeGTkZrIulJ8RTxfNKPuvISDZKAhrxTaqaY1ooMa9kbRxDSt4xp5eM9OdHhEpqirhovf9b-gDx84cL)
+
+## バッチ処理について調べたこと
+
+### バッチ処理とは？
+
+どこかのタイミングでまとめて実施される処理。すぐやらなくても大丈夫そうな処理を溜めておいて、どこかのタイミングでまとめてやる。
+
+バッチ処理とは、プログラム（データ）を処理目的ごとにまとめ、そのデータを順次処理していく一連の流れ、システムを指す。
+
+バッチ処理では、ユーザーはデータを収集して保存し、「バッチウィンドウ」と呼ばれるイベント中にデータを処理する。処理の優先順位を設定し、最も理にかなったタイミングでデータジョブを完了することにより、効率が向上する。
+
+### バッチ処理のやり方
+
+企業や組織が大量のデータを効率的に管理するうえで、バッチ処理は重要な役割を果たす。特に、会計プロセスなどの頻繁に発生する繰り返しの多いタスクの処理に適している。あらゆる業界や仕事においても、バッチ処理の基本的なやり方は同じ。重要なパラメーターは次のとおり。
+
+1. ジョブを送信するユーザー
+2. 実行されるプログラム
+3. 入力と出力の場所
+4. ジョブを実行すべき時刻
+
+つまり、「誰が、何を、どこで、何のために」実行するのか、ということ。
+
+### バッチ処理が使われる一例
+
+例えば、請求処理の自動化で、
+
+- 買い物をした数日後に、銀行口座にクレカの取引が表示される、一連のトランザクション：
+  - 買い物の後、しばらくしてからバッチ処理がされている
+- ある企業が、月に一度顧客に請求し、従業員には 2 週間ごとに給与を支払う
+  - 月 1 回の請求サイクル・2 週間に 1 回の給与支払いサイクルも、バッチ処理が行われている
+
+### バッチ処理のメリット
+
+- ジョブの効率化
+- データ入力の簡素化
+- データクオリティの向上

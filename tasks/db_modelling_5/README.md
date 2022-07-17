@@ -17,9 +17,9 @@
 ## 課題２
 
 - アプリケーションに利用されるような履歴データ（履歴を一覧表示したり、履歴を復元する）は、データベースでの保存する必要がある。一方で、後から履歴を分析したい場合には、前者のように最適化された履歴テーブルまでは持たさなくても、アプリケーション側で計測ログを仕込んだりすることでカバーできると考える。つまり、分析用のデータは別のサービスに集積させることで、アプリケーションで使用しない余計なデータを切り分ける
-  - [履歴テーブルについて](https://user-first.ikyu.co.jp/entry/history-table)の技術ブログの判断基準を参照
+  - [履歴テーブルについての技術ブログ](https://user-first.ikyu.co.jp/entry/history-table)の判断基準を参照
 - 異なるアプローチ１：記事テーブル自体を履歴テーブルとして扱うパターン
-  - [変更履歴を持つテーブルの設計](https://qiita.com/ak-ymst/items/2e8e92f212c807bb09a1)の Qiita の「その 1 記事テーブルにバージョン番号を持たせる方法」を参照
+  - [変更履歴を持つテーブルの設計の Qiita](https://qiita.com/ak-ymst/items/2e8e92f212c807bb09a1)の「その 1 記事テーブルにバージョン番号を持たせる方法」を参照
   - 記事グループ ID + `verison` の複合主キー
     - 同じ記事の場合、同じ記事クループ ID を持つ
   - 記事の最終更新日時は, 最新 `version` のレコードの `updated_at` で判断
@@ -29,7 +29,7 @@
 - 🔞 異なるアプローチ２：記事テーブルのカラム一つひとつの変更を履歴として追うパターン
   - [Design a Table to Keep Historical Changes in Database](https://dev.to/zhiyueyi/design-a-table-to-keep-historical-changes-in-database-10fn?signin=true)を参照
   - SQL アンチパターンの一つである、EAV (エンティティ・アトリビュート・バリュー) にあたると思われる。。
-    - [SQL アンチパターン Entity Attribute Value](https://qiita.com/fktnkit/items/0ff462640e00deecfc6d)の Qiita を参照
+    - [SQL アンチパターン Entity Attribute Value の Qiita](https://qiita.com/fktnkit/items/0ff462640e00deecfc6d)を参照
   - 更新したカラムに関するレコードのみを履歴として INSERT
   - 一度に更新するカラムの数が少ないほど有効
   - 更新されたカラムだけ保存するので、履歴テーブルに余計なカラムを持たない

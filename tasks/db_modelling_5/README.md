@@ -27,8 +27,9 @@
 [![課題２のER図１](https://mermaid.ink/img/pako:eNqd0m9LwkAcB_C3ctxj9wZ8Jmk4khRdzwZybacdbHdy3oRQIRyKEIGPsrCHRUIQQkF_KHox02XvottmulmPgj047j6_32_77trQYCaGaYh5lqA6R7ZOdZo50PLFslJQKxrodBSFtcFqK1PW1J1CTinnChlNLe5X8moJpMEhthitN6uCyeIV-V91cnhbpwA4DjGBfEp7QIefT9OvyWB50lezOgxOW4gbR4gDimwcP1-MzgLQjbX8c_xmhMExEoxX5XI3GDV_v_KHo9ioUDkNM6H8yaN_PttWiAtiWHitltOL-etpRKJXiqf0-zPjfqtlnTOnETT-UV5v5rl3nvvmueNERQvzJmF0A91RoHrPnnvruQ_J_AQRFo71_PB61547lJ2TzmBUYCrWcjHoL-5fIiOIjZsC2Y0oS2xW0QZGcfrjG_-yt83DUJM8ynXDZWowBW3MbURMeWHDzHQojrCNdZiWSxPXkGOJEEsa9cyZRP4tmK4hq4lTEDmCVY6psd6I1Orur3a732AXPS0)](https://mermaid.live/edit#pako:eNqd0m9LwkAcB_C3ctxj9wZ8Jmk4khRdzwZybacdbHdy3oRQIRyKEIGPsrCHRUIQQkF_KHox02XvottmulmPgj047j6_32_77trQYCaGaYh5lqA6R7ZOdZo50PLFslJQKxrodBSFtcFqK1PW1J1CTinnChlNLe5X8moJpMEhthitN6uCyeIV-V91cnhbpwA4DjGBfEp7QIefT9OvyWB50lezOgxOW4gbR4gDimwcP1-MzgLQjbX8c_xmhMExEoxX5XI3GDV_v_KHo9ioUDkNM6H8yaN_PttWiAtiWHitltOL-etpRKJXiqf0-zPjfqtlnTOnETT-UV5v5rl3nvvmueNERQvzJmF0A91RoHrPnnvruQ_J_AQRFo71_PB61547lJ2TzmBUYCrWcjHoL-5fIiOIjZsC2Y0oS2xW0QZGcfrjG_-yt83DUJM8ynXDZWowBW3MbURMeWHDzHQojrCNdZiWSxPXkGOJEEsa9cyZRP4tmK4hq4lTEDmCVY6psd6I1Orur3a732AXPS0)
 
 - 🔞 異なるアプローチ２：記事テーブルのカラム一つひとつの変更を履歴として追うパターン
-  - SQL アンチパターンの一つである、EAV (エンティティ・アトリビュート・バリュー) にあたる可能性
   - [Design a Table to Keep Historical Changes in Database](https://dev.to/zhiyueyi/design-a-table-to-keep-historical-changes-in-database-10fn?signin=true)を参照
+  - SQL アンチパターンの一つである、EAV (エンティティ・アトリビュート・バリュー) にあたると思われる。。
+    - [SQL アンチパターン Entity Attribute Value](https://qiita.com/fktnkit/items/0ff462640e00deecfc6d)の Qiita を参照
   - 更新したカラムに関するレコードのみを履歴として insert
   - 一度に更新するカラムの数が少ないほど有効
   - 更新されたカラムだけ保存するので、履歴テーブルに余計なカラムを持たない
